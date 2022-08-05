@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import {MdLocalShipping} from 'react-icons/md'
 import {BiDonateHeart} from 'react-icons/bi'
 import {AiTwotoneStar} from 'react-icons/ai'
@@ -32,28 +33,28 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center space-x-0 md:space-x-20 sm:-m-4 -mx-4 -mb-10 -mt-4">
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <img alt="content" className="object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" />
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Hand wash</h2>
               <p className="text-base leading-relaxed mt-2">Eum odit similique rerum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <img alt="content" className="object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" />
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Shammpoo</h2>
               <p className="text-base leading-relaxed mt-2">Quo at autem laborum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <img alt="content" className="object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" />
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Cleaner</h2>
               <p className="text-base leading-relaxed mt-2">Llit. Quia sint asperiores minima?</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <img alt="content" className="object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" />
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Perfume</h2>
               <p className="text-base leading-relaxed mt-2">Sequi minima nostrum totam.</p>
