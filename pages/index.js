@@ -18,7 +18,7 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <div className='z-0 pt-28 md:pt-20'>
-        <Image src="/home.jpg" alt="" width={1400} height={500} />
+        <Image src="/home.jpg" alt="" width={1500} height={800} />
       </div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-10 mx-auto">
@@ -40,21 +40,21 @@ export default function Home() {
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/31V4e3EJQpL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Shammpoo</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Shampo</h2>
               <p className="text-base leading-relaxed mt-2">Quo at autem laborum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://rukminim1.flixcart.com/image/416/416/l41n2q80/bathroom-floor-cleaner/o/h/l/floor-cleaner-floral-fresh-1000-floor-cleaner-floral-fresh-1000-original-imagff62twyrhgat.jpeg?q=70" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Cleaner</h2>
               <p className="text-base leading-relaxed mt-2">Llit. Quia sint asperiores minima?</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://rukminim1.flixcart.com/image/416/416/kt4ozgw0/perfume/f/7/y/100-whisky-smoke-edp-100-ml-eau-de-parfum-beardo-men-original-imag6jnjcywmxgeq.jpeg?q=70" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Perfume</h2>
               <p className="text-base leading-relaxed mt-2">Sequi minima nostrum totam.</p>
