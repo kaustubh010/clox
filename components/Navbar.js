@@ -7,7 +7,7 @@ const Navbar = () => {
         <>
             <header className="text-gray-600 body-font fixed top-0 bg-white z-10 w-full">
                 <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center h-20 mt-8 md:mt-0">
-                    <Link href={'/'}><a><Image src={'/logo.png'} alt={'logo'} width={100} height={40} /></a></Link>
+                    <Link href={'/'}><a><Image src={'/logo.png'} alt={'logo'} width={120} height={60} /></a></Link>
                     <nav className="hidden md:ml-auto md:flex flex-wrap items-center text-base justify-center">
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">Home</a></Link></li>
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/about'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">About</a></Link></li>

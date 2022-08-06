@@ -33,30 +33,30 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center space-x-0 md:space-x-20 sm:-m-4 -mx-4 -mb-10 -mt-4">
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/51MBJhwifzL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="/bathroom cleaning spray.png" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Hand wash</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Bathroom Cleaning Spray</h2>
               <p className="text-base leading-relaxed mt-2">Eum odit similique rerum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://images-eu.ssl-images-amazon.com/images/I/31V4e3EJQpL._SX300_SY300_QL70_FMwebp_.jpg" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="/dish wash gel.png" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Shampo</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Dish Wash Gel</h2>
               <p className="text-base leading-relaxed mt-2">Quo at autem laborum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://rukminim1.flixcart.com/image/416/416/l41n2q80/bathroom-floor-cleaner/o/h/l/floor-cleaner-floral-fresh-1000-floor-cleaner-floral-fresh-1000-original-imagff62twyrhgat.jpeg?q=70" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="/floor cleaner.png" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Cleaner</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Floor Cleaner</h2>
               <p className="text-base leading-relaxed mt-2">Llit. Quia sint asperiores minima?</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-60 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="https://rukminim1.flixcart.com/image/416/416/kt4ozgw0/perfume/f/7/y/100-whisky-smoke-edp-100-ml-eau-de-parfum-beardo-men-original-imag6jnjcywmxgeq.jpeg?q=70" /></Link>
+                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-full w-full" src="/glass cleaner.png" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Perfume</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Glass Cleaner</h2>
               <p className="text-base leading-relaxed mt-2">Sequi minima nostrum totam.</p>
             </div>
           </div>

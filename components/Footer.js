@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="text-gray-600 bg-gray-200 body-font mb-12 md:mb-0">
             <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-                    <Link href={'/'}><a><Image src={'/logo.png'} alt={'logo'} width={100} height={40}/></a></Link>
+                    <Link href={'/'}><a><Image src={'/logo.png'} alt={'logo'} width={120} height={60}/></a></Link>
                     <p className="mt-2 text-sm text-gray-500">100% Natural 0% Harmfull</p>
                 </div>
                 <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
