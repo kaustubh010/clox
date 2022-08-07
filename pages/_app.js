@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }) {
 
   return <>
     <Head>
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="manifest" href="/site.webmanifest" />
     </Head>
     <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />

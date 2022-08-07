@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import { useState } from 'react'
 
 const Post = ({addToCart}) => {
@@ -24,10 +23,6 @@ const Post = ({addToCart}) => {
     }
 
     return <>
-        <Head>
-            <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-            <link rel="manifest" href="/site.webmanifest" />
-        </Head>
         <section className="text-gray-600 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
