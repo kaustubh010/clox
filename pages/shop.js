@@ -6,7 +6,7 @@ const Shop = () => {
     return (
         <div>
             <section className="text-gray-600 body-font mt-6 m-auto">
-                <div className="container px-28 py-24 mx-auto">
+                <div className="container md:px-28 py-24 mx-auto">
                     <div className="flex flex-wrap cursor-pointer -m-4">
                         <Link href={'/product/shampoo'}><div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg mx-5 my-2">
                             <a className="block relative rounded overflow-hidden">
