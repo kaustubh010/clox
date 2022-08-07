@@ -25,7 +25,7 @@ const Post = ({addToCart}) => {
 
     return <>
         <Head>
-            <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+            <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
             <link rel="manifest" href="/site.webmanifest" />
         </Head>
         <section className="text-gray-600 body-font overflow-hidden">
