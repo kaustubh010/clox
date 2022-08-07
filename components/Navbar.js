@@ -2,10 +2,10 @@ import { React, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/dist/client/image'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { FaUserCircle } from 'react-icons/fa'
-import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart } from 'react-icons/ai'
+import { FaUserCircle, FaShoppingCart } from 'react-icons/fa'
+import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 
-const Navbar = () => {
+const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
     const ref = useRef()
     const toggleCart = () => {
         if (ref.current.classList.contains('translate-x-full')) {
@@ -48,6 +48,25 @@ const Navbar = () => {
                         <button onClick={toggleCart} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
                     </div>
                     <nav className="mt-10 MuiList-root MuiList-padding MuiList-subheader css-5xiesr" aria-labelledby="nested-list-subheader">
+                        <ol className='list-decimal font-semibold'>
+                            {Object.keys(cart).length==0 && <div className='font-semibold ml-4'>Your cart is Empty!</div>}
+                            {Object.keys(cart).map((k)=>{return <li key={k}>
+                                <div className="item flex my-5">
+                                    <div className="w-2/3 font-semibold">{cart[k].name}</div>
+                                    <div className="flex font-semibold items-center justify-center w-1/3 text-lg">
+                                        <AiFillMinusCircle onClick={()=>{removeFromCart(k, 1, cart[k].price, cart[k].name)}} className='cursor-pointer text-red-500' />
+                                        <span className='mx-2 text-sm'>{cart[k].qty}</span> <AiFillPlusCircle onClick={()=>{addToCart(k, 1, cart[k].price, cart[k].name)}}className='cursor-pointer text-red-500' />
+                                    </div>
+                                </div>
+                            </li>})}
+                        </ol>
+                        <p className='text-lg mt-6 font-bold'>Subtotal: ₹0</p>
+                        <div className="buttons flex">
+                            <button className="mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
+                                <span className='text-xl mr-2'><FaShoppingCart /></span> Checkout
+                            </button>
+                            <button onClick={clearCart} className="mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">Clear Cart</button>
+                        </div>
                     </nav>
                 </div>
             </header>
