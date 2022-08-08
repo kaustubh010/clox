@@ -42,7 +42,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                     <button className="hidden md:block bg-red-500 px-2 py-1 pb-1.5 rounded-md text-sm text-white mx-3 cursor-pointer">Login</button>
                     <button onClick={toggleCart} className="hidden md:block px-2 py-1 pb-1.5 text-red-500 text-2xl bg-white border-slate-100 rounded-2xl border-2 mx-3 cursor-pointer"><AiOutlineShoppingCart /></button>
                 </div>
-                <div ref={ref} className="Nav z-10 top-0 right-0 p-10 transform transition-transform translate-x-full bg-white w-full md:w-[50%] h-full fixed">
+                <div ref={ref} className={`sideCart z-10 top-0 right-0 p-10 transform transition-transform ${Object.keys(cart).length !== 0 ?'translate-x-0':'translate-x-full'} bg-white w-full md:w-[50%] h-full fixed`}>
                     <div className="w-full flex justify-between items-center relative ps-5 md:ps-7 py-0.5 border-b border-gray-100">
                         <h2 className='font-bold text-xl md:text-2xl m-0 text-heading'>Shoping Cart</h2>
                         <button onClick={toggleCart} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
@@ -60,11 +60,11 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                                 </div>
                             </li>})}
                         </ol>
-                        <p className='text-lg mt-6 font-bold'>Subtotal: ₹0</p>
+                        <p className='text-lg mt-6 font-bold'>Subtotal: ₹{subTotal}</p>
                         <div className="buttons flex">
-                            <button className="mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
+                            <Link href={'/checkout'}><button className="mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
                                 <span className='text-xl mr-2'><FaShoppingCart /></span> Checkout
-                            </button>
+                            </button></Link>
                             <button onClick={clearCart} className="mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">Clear Cart</button>
                         </div>
                     </nav>
