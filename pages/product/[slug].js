@@ -8,7 +8,7 @@ const Post = ({addToCart}) => {
     const [pin, setPin] = useState()
     const [service, setService] = useState()
     const checkpincode = async()=>{
-        let pins = await fetch('http://localhost:3000/api/pincode')
+        let pins = await fetch('https://clox-com.vercel.app/api/pincode')
         let pinJson = await pins.json()
         if(pinJson.includes(parseInt(pin))){
             setService(true);
