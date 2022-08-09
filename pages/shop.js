@@ -29,7 +29,7 @@ const Shop = ({products}) => {
 }
 
 export async function getServerSideProps(context) {
-    await mongoose.connect(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGODB_URI)
     let products = await Product.find()
     return {
         props: {products: JSON.parse(JSON.stringify(products))} // will be passed to the page component as props

@@ -98,7 +98,7 @@ const Post = ({addToCart, product, clearCart, buynow}) => {
 }
 
 export async function getServerSideProps(context) {
-    await mongoose.connect(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGODB_URI)
     let product = await Product.findOne({slug: context.query.slug})
     return {
         props: {product: JSON.parse(JSON.stringify(product))} // will be passed to the page component as props
