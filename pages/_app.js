@@ -1,10 +1,12 @@
 import Footer from '../components/Footer'
+import { useRouter } from 'next/router'
 import Navbar from '../components/Navbar'
 import Head from 'next/head'
 import '../styles/globals.css'
 import { useState, useEffect } from 'react'
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   useEffect(() => {
@@ -41,6 +43,13 @@ function MyApp({ Component, pageProps }) {
     saveCart(newCart)
   }
 
+  const buynow = (itemCode, qty, price, name)=>{
+    let newCart = {itemCode: {qty: 1, price, name}}
+    setCart(newCart)
+    saveCart(newCart)
+    router.push('/checkout')
+}
+
   const removeFromCart = (itemCode, qty, price, name)=>{
     let newCart = cart;
     if(itemCode in cart){
@@ -64,7 +73,7 @@ function MyApp({ Component, pageProps }) {
       <link rel="manifest" href="/site.webmanifest" />
     </Head>
     <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
-    <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
+    <Component cart={cart} buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />
   </>
 }
