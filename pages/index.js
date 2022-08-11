@@ -5,8 +5,10 @@ import Link from 'next/link'
 import {MdLocalShipping} from 'react-icons/md'
 import {BiDonateHeart} from 'react-icons/bi'
 import {AiTwotoneStar} from 'react-icons/ai'
+import Product from '../models/Product';
+import mongoose from "mongoose";
 
-export default function Home() {
+export default function Home({products}) {
   return (
     <div>
       <Head>
@@ -29,30 +31,30 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center space-x-0 md:space-x-20 sm:-m-4 -mx-4 -mb-10 -mt-4">
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/bathroom cleaning spray.png" /></Link>
+                <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Bathroom Cleaning Spray</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].name}</h2>
               <p className="text-base leading-relaxed mt-2">Eum odit similique rerum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/dish wash gel.png" /></Link>
+                <Link href={`/product/${products[1].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[1].img} /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Dish Wash Gel</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[1].name}</h2>
               <p className="text-base leading-relaxed mt-2">Quo at autem laborum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/floor cleaner.png" /></Link>
+                <Link href={`/product/${products[2].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/floor cleaner.png" /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Floor Cleaner</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[2].name}</h2>
               <p className="text-base leading-relaxed mt-2">Llit. Quia sint asperiores minima?</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={'/product/handwash'}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/glass cleaner.png" /></Link>
+                <Link href={`/product/${products[3].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[3].img} /></Link>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">Glass Cleaner</h2>
+              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[2].name}</h2>
               <p className="text-base leading-relaxed mt-2">Sequi minima nostrum totam.</p>
             </div>
           </div>
@@ -93,4 +95,12 @@ export default function Home() {
       </section>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  await mongoose.connect(process.env.MONGODB_URI)
+  let products = await Product.find()
+  return {
+      props: {products: JSON.parse(JSON.stringify(products))} // will be passed to the page component as props
+  }
 }

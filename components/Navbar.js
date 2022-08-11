@@ -1,12 +1,17 @@
-import { React, useRef } from 'react'
+import { React, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/dist/client/image'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { FaUserCircle, FaShoppingCart } from 'react-icons/fa'
-import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
+import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart, AiFillMinusCircle, AiFillPlusCircle, AiFillBook } from 'react-icons/ai'
+import {FiLogOut} from 'react-icons/fi'
 
-const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTotal}) => {
     const ref = useRef()
+    const [dropdown, setDropdown] = useState(false)
+    const toogleDropdown = ()=>{
+        setDropdown(!dropdown)
+    }
     const toggleCart = () => {
         if (ref.current.classList.contains('translate-x-full')) {
             ref.current.classList.remove('translate-x-full')
@@ -39,7 +44,16 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/contact'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">Contact Us</a></Link></li>
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/shop'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">Shop</a></Link></li>
                     </nav>
-                    <button className="hidden md:block bg-red-500 px-2 py-1 pb-1.5 rounded-md text-sm text-white mx-3 cursor-pointer">Login</button>
+                    {dropdown && <div className="absolute right-28 w-50 text-md flex bg-white top-16 rounded-md px-5 shadow-slate-600 shadow-md">
+                        <ul>
+                            <Link href={'/account'}><li className='cursor-pointer items-center flex text-md font-semibold'><FaUserCircle className='m-4 text-2xl text-red-500'/>My Account</li></Link>
+                            <Link href={'/orders'}><li className='cursor-pointer items-center flex text-md font-semibold'><AiFillBook className='m-4 text-2xl text-red-500'/>Orders</li></Link>
+                            <hr />
+                            <li onClick={logout} className='cursor-pointer items-center flex text-md font-semibold'><FiLogOut className='m-4 text-2xl'/>Log out</li>
+                        </ul>
+                    </div>}
+                    {user.value && <FaUserCircle onClick={toogleDropdown} className='text-xl md:text-2xl mx-2 text-red-500 cursor-pointer' />}
+                    {!user.value && <Link href={'/login'}><button className="hidden md:block bg-red-500 px-2 py-1 pb-1.5 rounded-md text-sm text-white mx-3 cursor-pointer">Login</button></Link>}
                     <button onClick={toggleCart} className="hidden md:block px-2 py-1 pb-1.5 text-red-500 text-2xl bg-white border-slate-100 rounded-2xl border-2 mx-3 cursor-pointer"><AiOutlineShoppingCart /></button>
                 </div>
                 <div ref={ref} className={`sideCart z-10 top-0 right-0 p-10 transform transition-transform ${Object.keys(cart).length !== 0 ?'translate-x-0':'translate-x-full'} bg-white w-full md:w-[50%] h-full fixed`}>

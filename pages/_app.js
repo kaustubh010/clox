@@ -9,9 +9,12 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
+  const [user, setUser] = useState({ value: null })
+  const [key, setKey] = useState(0)
+
   useEffect(() => {
     try {
-      if(localStorage.getItem('cart')){
+      if (localStorage.getItem('cart')) {
         setCart(JSON.parse(localStorage.getItem('cart')))
         saveCart(JSON.parse(localStorage.getItem('cart')))
       }
@@ -19,50 +22,61 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear()
     }
-  }, [])
-  
-  const saveCart = (myCart)=>{
+    const token = localStorage.getItem('token')
+    if (token) {
+      setUser({ value: token })
+      setKey(Math.random())
+    }
+  }, [router.query])
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser({ value: null })
+    setKey(Math.random())
+  }
+
+  const saveCart = (myCart) => {
     localStorage.setItem('cart', JSON.stringify(myCart))
     let subt = 0;
     let keys = Object.keys(myCart)
-    for (let i=0; i<keys.length; i++) {
+    for (let i = 0; i < keys.length; i++) {
       subt += myCart[keys[i]]['price'] * myCart[keys[i]].qty;
     }
     setSubTotal(subt)
   }
 
-  const addToCart = (itemCode, qty, price, name)=>{
+  const addToCart = (itemCode, qty, price, name) => {
     let newCart = cart;
-    if(itemCode in cart){
+    if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty + qty
     }
-    else{
-      newCart[itemCode] = {qty: 1, price, name}
+    else {
+      newCart[itemCode] = { qty: 1, price, name }
     }
     setCart(newCart)
     saveCart(newCart)
   }
 
-  const buynow = (itemCode, qty, price, name)=>{
-    let newCart = {itemCode: {qty: 1, price, name}}
+  const buynow = (itemCode, qty, price, name) => {
+    let newCart = { itemCode: { qty: 1, price, name } }
     setCart(newCart)
     saveCart(newCart)
     router.push('/checkout')
-}
+  }
 
-  const removeFromCart = (itemCode, qty, price, name)=>{
+  const removeFromCart = (itemCode, qty, price, name) => {
     let newCart = cart;
-    if(itemCode in cart){
+    if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty - qty
     }
-    else{
-      newCart[itemCode] = {qty: 1, price, name}
+    else {
+      newCart[itemCode] = { qty: 1, price, name }
     }
     setCart(newCart)
     saveCart(newCart)
   }
 
-  const clearCart = ()=>{
+  const clearCart = () => {
     setCart({})
     saveCart({})
   }
@@ -72,7 +86,7 @@ function MyApp({ Component, pageProps }) {
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="manifest" href="/site.webmanifest" />
     </Head>
-    <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
+    <Navbar logout={logout} user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
     <Component cart={cart} buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />
   </>
