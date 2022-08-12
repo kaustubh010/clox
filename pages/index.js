@@ -34,28 +34,24 @@ export default function Home({products}) {
                 <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].title}</h2>
-              <p className="text-base leading-relaxed mt-2">Eum odit similique rerum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
                 <Link href={`/product/${products[1].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[1].img} /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[1].title}</h2>
-              <p className="text-base leading-relaxed mt-2">Quo at autem laborum.</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
                 <Link href={`/product/${products[2].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src="/floor cleaner.png" /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[2].title}</h2>
-              <p className="text-base leading-relaxed mt-2">Llit. Quia sint asperiores minima?</p>
             </div>
             <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
               <div className="h-96 w-40 bg-slate-200 overflow-hidden">
                 <Link href={`/product/${products[3].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[3].img} /></Link>
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[3].title}</h2>
-              <p className="text-base leading-relaxed mt-2">Sequi minima nostrum totam.</p>
             </div>
           </div>
         </div>

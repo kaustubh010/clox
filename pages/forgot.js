@@ -1,7 +1,14 @@
-import React from 'react'
+import {React, useEffect} from 'react'
+import { useRouter } from 'next/router';
 import Link from 'next/link'
 
 const Forgot = () => {
+    const router = useRouter();
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            router.push('/')
+        }
+    }, [])
     return (
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20">
             <div className="max-w-md w-full space-y-8">
