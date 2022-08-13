@@ -93,6 +93,7 @@ function MyApp({ Component, pageProps }) {
     <Head>
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="manifest" href="/site.webmanifest" />
+      <meta name="google-site-verification" content="hB6P-uuOyotYMJbRaFz-Wcqs1H7OphvGYh6lrL_N_po" />
     </Head>
     <LoadingBar
         color='#f11946'
