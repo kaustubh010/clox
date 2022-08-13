@@ -1,9 +1,8 @@
 import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
-import { AiOutlineClose, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
-import Link from 'next/link'
+import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 
-const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal }) => {
+const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
     return (
         <div className='container mx-auto mt-20 p-2'>
             <h1 className='font-bold text-3xl my-8 text-center'>Checkout</h1>
