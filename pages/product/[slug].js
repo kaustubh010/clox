@@ -5,6 +5,7 @@ import Product from '../../models/Product'
 import mongoose from "mongoose";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
 
 const Post = ({ addToCart, product, clearCart, buynow }) => {
     const router = useRouter()
@@ -45,6 +46,10 @@ const Post = ({ addToCart, product, clearCart, buynow }) => {
     }
 
     return <>
+    <Head>
+    <title>{`Clox.com ${product.title}`}</title>
+        <meta name="description" content={`Clox.com ${product.desc}`} />
+    </Head>
         <ToastContainer
             position="top-left"
             autoClose={3000}
