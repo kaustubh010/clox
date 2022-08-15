@@ -12,8 +12,8 @@ export default function Home({products}) {
   return (
     <div>
       <Head>
-        <title>Clox.com 100% Natural 0% Harmful</title>
-        <meta name="description" content="Clox.com 100% Natural 0% Harmful. We sell Natural cleaning Products for your home and Office to keep your home clean and hygienic. Because your safety is our responsibility." />
+        <title>Clox</title>
+        <meta name="description" content="Clox 100% Natural 0% Harmful. We sell Natural cleaning Products for your home and Office to keep your home clean and hygienic. Because your safety is our responsibility." />
       </Head>
       <div className='z-0 pt-28 md:pt-20'>
         <Image src="/home.jpg" alt="" width={1500} height={800} />

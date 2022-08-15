@@ -47,8 +47,8 @@ const Post = ({ addToCart, product, clearCart, buynow }) => {
 
     return <>
     <Head>
-    <title>{`Clox.com ${product.title}`}</title>
-        <meta name="description" content={`Clox.com ${product.desc}`} />
+    <title>{`Clox Buy ${product.title}`}</title>
+        <meta name="description" content={`Clox Buy ${product.title}`} />
     </Head>
         <ToastContainer
             position="top-left"
