@@ -76,10 +76,14 @@ function MyApp({ Component, pageProps }) {
     let newCart = cart;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty - qty
+      if(newCart[itemCode].qty==0){
+        delete newCart[itemCode];
+      }
     }
-    else {
-      newCart[itemCode] = { qty: 1, price, name }
+    else{
+      newCart[itemCode] = { qty:1, price, name }
     }
+
     setCart(newCart)
     saveCart(newCart)
   }

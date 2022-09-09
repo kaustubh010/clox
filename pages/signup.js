@@ -43,15 +43,28 @@ const Signup = () => {
         setName('')
         setEmail('')
         setPassword('')
-        toast.success('Your Account Created Succesfully', {
-            position: "top-left",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+        if (response.succses) {
+            toast.success('Your Account Created Succesfully', {
+                position: "top-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
             });
+        }
+        else {
+            toast.error(response.error, {
+                position: "top-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
     }
 
     return (
