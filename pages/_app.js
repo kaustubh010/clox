@@ -15,10 +15,10 @@ function MyApp({ Component, pageProps }) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    router.events.on('routeChangeStart', ()=>{
+    router.events.on('routeChangeStart', () => {
       setProgress(40)
     })
-    router.events.on('routeChangeComplete', ()=>{
+    router.events.on('routeChangeComplete', () => {
       setProgress(100)
     })
     try {
@@ -33,8 +33,8 @@ function MyApp({ Component, pageProps }) {
     const token = localStorage.getItem('token')
     if (token) {
       setUser({ value: token })
-      setKey(Math.random())
     }
+    setKey(Math.random())
   }, [router.query])
 
   const logout = () => {
@@ -76,12 +76,12 @@ function MyApp({ Component, pageProps }) {
     let newCart = cart;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty - qty
-      if(newCart[itemCode].qty==0){
+      if (newCart[itemCode].qty == 0) {
         delete newCart[itemCode];
       }
     }
-    else{
-      newCart[itemCode] = { qty:1, price, name }
+    else {
+      newCart[itemCode] = { qty: 1, price, name }
     }
 
     setCart(newCart)
@@ -101,12 +101,12 @@ function MyApp({ Component, pageProps }) {
       <meta name="google-site-verification" content="hB6P-uuOyotYMJbRaFz-Wcqs1H7OphvGYh6lrL_N_po" />
     </Head>
     <LoadingBar
-        color='#f11946'
-        height={3}
-        waitingTime={400}
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
+      color='#f11946'
+      height={3}
+      waitingTime={400}
+      progress={progress}
+      onLoaderFinished={() => setProgress(0)}
+    />
     <Navbar logout={logout} user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
     <Component cart={cart} buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />

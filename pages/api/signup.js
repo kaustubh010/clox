@@ -8,7 +8,7 @@ const handler = async (req, res) => {
         let user = await User.findOne({"email": req.body.email})
         if (req.body.email !== user.email){
             const {name , email} = req.body
-            let U = User({name, email, password: CryptoJS.AES.encrypt(req.body.password, 'secret123').toString()})
+            let U = User({name, email, password: CryptoJS.AES.encrypt(req.body.password, process.env.AES_SECRET).toString()})
             await U.save()
             res.status(200).json({ succses: "succses" })
         }
