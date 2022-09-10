@@ -78,10 +78,10 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                         </ol>
                         <p className='text-lg mt-6 font-bold'>Subtotal: ₹{subTotal}</p>
                         <div className="buttons flex">
-                            <Link href={'/checkout'}><button disabled={Object.keys(cart).length == 0 ? true : false} className="disabled:bg-red-400 mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
+                            <Link href={'/checkout'}><button disabled={Object.keys(cart).length == 0 ? true : false} className="disabled:bg-red-300 mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
                                 <span className='text-xl mr-2'><FaShoppingCart /></span> Checkout
                             </button></Link>
-                            <button onClick={clearCart} disabled={Object.keys(cart).length == 0 ? true : false} className="disabled:bg-red-400 mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">Clear Cart</button>
+                            <button onClick={clearCart} disabled={Object.keys(cart).length == 0 ? true : false} className="disabled:bg-red-300 mt-4 flex justify-center items-center ml-4 text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">Clear Cart</button>
                         </div>
                     </nav>
                 </div>
