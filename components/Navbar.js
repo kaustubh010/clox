@@ -56,7 +56,7 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                     {!user.value && <Link href={'/login'}><button className="hidden md:block bg-red-500 px-2 py-1 pb-1.5 rounded-md text-sm text-white mx-3 cursor-pointer">Login</button></Link>}
                     <button onClick={toggleCart} className="hidden md:block px-2 py-1 pb-1.5 text-red-500 text-2xl bg-white border-slate-100 rounded-2xl border-2 mx-3 cursor-pointer"><AiOutlineShoppingCart /></button>
                 </div>
-                <div ref={ref} className={`sideCart z-10 top-0 right-0 p-10 transform transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'} bg-white w-full md:w-[50%] h-full fixed`}>
+                <div ref={ref} className={`sideCart z-10 top-0 right-0 p-10 transform transition-transform translate-x-full bg-white w-full md:w-[50%] h-full fixed`}>
                     <div className="w-full flex justify-between items-center relative ps-5 md:ps-7 py-0.5 border-b border-gray-100">
                         <h2 className='font-bold text-xl md:text-2xl m-0 text-heading'>Shoping Cart</h2>
                         <button onClick={toggleCart} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
