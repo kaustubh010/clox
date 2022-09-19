@@ -10,6 +10,7 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
     const initiateOrder = async () => {
         let oid = Math.floor(Math.random() * Date.now());
         const data = { cart, subTotal, oid, email: email, name, address, pincode, phone }
+        // Initiate order api
         let a = await fetch('/api/initiateorder', {
             method: 'POST',
             headers: {
@@ -17,9 +18,10 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
             },
             body: JSON.stringify(data)
         })
+
         let response = await a.json()
+
         if (response.succses) {
-            localStorage.setItem('token', response.token)
             toast.success('Order Placed Successfully', {
                 position: "top-left",
                 autoClose: 3000,
@@ -30,8 +32,19 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
                 progress: undefined,
             });
             setTimeout(() => {
-                router.push('/order')
+                router.push('/order?id=' + response.order)
             }, 1000);
+        }
+        else if(response.changed){
+            toast.error(response.error, {
+                position: "top-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         else {
             toast.error(response.error, {
@@ -54,7 +67,7 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
     const [disabled, setDisabled] = useState(true)
     const [state, setState] = useState('')
     const [district, setDistrict] = useState('')
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
         if (e.target.name == 'name') {
             setName(e.target.value)
         }
@@ -69,6 +82,24 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
         }
         else if (e.target.name == 'pincode') {
             setPincode(e.target.value)
+            if (e.target.value.length == 6) {
+                let a = await fetch(`https://api.postalpincode.in/pincode/${e.target.value}`, {
+                    method: 'GET',
+                })
+                let pin = await a.json()
+                if (pin[0].Status == "Success") {
+                    setState(pin[0].PostOffice[0].Circle)
+                    setDistrict(pin[0].PostOffice[0].District)
+                }
+                else {
+                    setState('')
+                    setDistrict('')
+                }
+            }
+            else {
+                setState('')
+                setDistrict('')
+            }
         }
         setTimeout(() => {
             if (name.length > 3 && email.length > 3 && address.length > 3 && phone.length > 3 && pincode.length > 3) {
@@ -133,13 +164,13 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-                            <input value={state} type="text" id="state" name="state" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true} />
+                            <input onChange={handleChange} value={state} type="text" id="state" name="state" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="district" className="leading-7 text-sm text-gray-600">District</label>
-                            <input value={district} type="text" id="district" name="district" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true} />
+                            <input onChange={handleChange} value={district} type="text" id="district" name="district" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                     </div>
                 </div>
@@ -169,5 +200,4 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
             </div></>
     )
 }
-
 export default Checkout
