@@ -30,15 +30,15 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear()
     }
-    const token = localStorage.getItem('token')
-    if (token) {
-      setUser({ value: token })
+    const myuser = JSON.parse(localStorage.getItem('myuser'))
+    if (myuser) {
+      setUser({ value: myuser.token, email: myuser.email })
     }
     setKey(Math.random())
   }, [router.query])
 
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('myuser')
     setUser({ value: null })
     setKey(Math.random())
   }
@@ -54,6 +54,9 @@ function MyApp({ Component, pageProps }) {
   }
 
   const addToCart = (itemCode, qty, price, name) => {
+    if(Object.keys(cart).length == 0){
+      setKey(Math.random())
+    }
     let newCart = cart;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty + qty
@@ -109,7 +112,7 @@ function MyApp({ Component, pageProps }) {
       onLoaderFinished={() => setProgress(0)}
     />
     <Navbar logout={logout} user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
-    <Component cart={cart} buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
+    <Component user={user} cart={cart} buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />
   </>
 }

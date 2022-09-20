@@ -1,11 +1,17 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 
-const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
+const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }) => {
+    useEffect(() => {
+        if (user.value) {
+            setEmail(user.email)
+        }
+    }, [])
+
     const router = useRouter()
     const initiateOrder = async () => {
         let oid = Math.floor(Math.random() * Date.now());
@@ -18,7 +24,6 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
             },
             body: JSON.stringify(data)
         })
-
         let response = await a.json()
 
         if (response.succses) {
@@ -32,21 +37,14 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
                 progress: undefined,
             });
             setTimeout(() => {
+                clearCart()
                 router.push('/order?id=' + response.order)
             }, 1000);
         }
-        else if(response.changed){
-            toast.error(response.error, {
-                position: "top-left",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
         else {
+            if (response.clear) {
+                clearCart()
+            }
             toast.error(response.error, {
                 position: "top-left",
                 autoClose: 3000,
@@ -136,7 +134,7 @@ const Checkout = ({ cart, removeFromCart, addToCart, subTotal }) => {
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                            <input onChange={handleChange} value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            {user.value ? <input value={user.email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true} /> : <input onChange={handleChange} value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />}
                         </div>
                     </div>
                 </div>
