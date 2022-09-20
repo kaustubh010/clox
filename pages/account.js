@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-const Account = ({user}) => {
+const Account = ({ user }) => {
   const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-    const [pincode, setPincode] = useState('')
-    const [disabled, setDisabled] = useState(true)
-    const [state, setState] = useState('')
-    const [district, setDistrict] = useState('')
+  const [email, setEmail] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [pincode, setPincode] = useState('')
+  const [password, setPassword] = useState()
+  const [cpassword, setCpassword] = useState()
   const router = useRouter()
   useEffect(() => {
     if (!localStorage.getItem('myuser')) {
@@ -19,47 +18,47 @@ const Account = ({user}) => {
 
   const handleChange = async (e) => {
     if (e.target.name == 'name') {
-        setName(e.target.value)
+      setName(e.target.value)
     }
     else if (e.target.name == 'email') {
-        setEmail(e.target.value)
+      setEmail(e.target.value)
     }
     else if (e.target.name == 'address') {
-        setAddress(e.target.value)
+      setAddress(e.target.value)
     }
     else if (e.target.name == 'phone') {
-        setPhone(e.target.value)
+      setPhone(e.target.value)
     }
     else if (e.target.name == 'pincode') {
-        setPincode(e.target.value)
-        if (e.target.value.length == 6) {
-            let a = await fetch(`https://api.postalpincode.in/pincode/${e.target.value}`, {
-                method: 'GET',
-            })
-            let pin = await a.json()
-            if (pin[0].Status == "Success") {
-                setState(pin[0].PostOffice[0].Circle)
-                setDistrict(pin[0].PostOffice[0].District)
-            }
-            else {
-                setState('')
-                setDistrict('')
-            }
+      setPincode(e.target.value)
+      if (e.target.value.length == 6) {
+        let a = await fetch(`https://api.postalpincode.in/pincode/${e.target.value}`, {
+          method: 'GET',
+        })
+        let pin = await a.json()
+        if (pin[0].Status == "Success") {
+          setState(pin[0].PostOffice[0].Circle)
+          setDistrict(pin[0].PostOffice[0].District)
         }
         else {
-            setState('')
-            setDistrict('')
+          setState('')
+          setDistrict('')
         }
+      }
+      else {
+        setState('')
+        setDistrict('')
+      }
     }
     setTimeout(() => {
-        if (name.length > 3 && email.length > 3 && address.length > 3 && phone.length > 3 && pincode.length > 3) {
-            setDisabled(false)
-        }
-        else {
-            setDisabled(true)
-        }
+      if (name.length > 3 && email.length > 3 && address.length > 3 && phone.length > 3 && pincode.length > 3) {
+        setDisabled(false)
+      }
+      else {
+        setDisabled(true)
+      }
     }, 100);
-}
+  }
 
   return (
     <div className='container mx-auto mt-20 p-2'>
@@ -109,7 +108,7 @@ const Account = ({user}) => {
         </div>
         <div className="px-2 w-1/2">
           <div className="mb-4">
-          <label htmlFor="password" className="leading-7 text-sm text-gray-600">Confirm Password</label>
+            <label htmlFor="password" className="leading-7 text-sm text-gray-600">Confirm Password</label>
             <input onChange={handleChange} value={cpassword} type="password" id="cpassword" name="cpassword" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
           </div>
         </div>
