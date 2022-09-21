@@ -4,13 +4,54 @@ import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
+import Head from 'next/head';
 
-const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }) => {
+const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal }) => {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [address, setAddress] = useState('')
+    const [phone, setPhone] = useState('')
+    const [pincode, setPincode] = useState('')
+    const [disabled, setDisabled] = useState(true)
+    const [state, setState] = useState('')
+    const [district, setDistrict] = useState('')
+    const [user, setUser] = useState()
+
     useEffect(() => {
-        if (user.value) {
-            setEmail(user.email)
+        const myuser = JSON.parse(localStorage.getItem('myuser'))
+        if (myuser && myuser.token) {
+            setUser(myuser)
+            setEmail(myuser.email)
+            fetchData(myuser.token)
         }
     }, [])
+
+    useEffect(() => {
+        if (name.length > 3 && email.length > 3 && address.length > 3 && phone.length > 9 && pincode.length > 5) {
+            setDisabled(false)
+        }
+        else {
+            setDisabled(true)
+        }
+    }, [name, email, pincode, address, phone])
+
+
+    const fetchData = async (token) => {
+        let data = { token: token }
+        let a = await fetch('/api/getuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        let response = await a.json()
+        setName(response.name)
+        setAddress(response.address)
+        setPhone(response.phone)
+        setPincode(response.pincode)
+        getpincode(response.pincode)
+    }
 
     const router = useRouter()
     const initiateOrder = async () => {
@@ -57,14 +98,21 @@ const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }
         }
     }
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-    const [pincode, setPincode] = useState('')
-    const [disabled, setDisabled] = useState(true)
-    const [state, setState] = useState('')
-    const [district, setDistrict] = useState('')
+    const getpincode = async (pins) => {
+        let a = await fetch(`https://api.postalpincode.in/pincode/${pins}`, {
+            method: 'GET',
+        })
+        let pin = await a.json()
+        if (pin[0].Status == "Success") {
+            setState(pin[0].PostOffice[0].Circle)
+            setDistrict(pin[0].PostOffice[0].District)
+        }
+        else {
+            setState('')
+            setDistrict('')
+        }
+    }
+
     const handleChange = async (e) => {
         if (e.target.name == 'name') {
             setName(e.target.value)
@@ -81,36 +129,21 @@ const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }
         else if (e.target.name == 'pincode') {
             setPincode(e.target.value)
             if (e.target.value.length == 6) {
-                let a = await fetch(`https://api.postalpincode.in/pincode/${e.target.value}`, {
-                    method: 'GET',
-                })
-                let pin = await a.json()
-                if (pin[0].Status == "Success") {
-                    setState(pin[0].PostOffice[0].Circle)
-                    setDistrict(pin[0].PostOffice[0].District)
-                }
-                else {
-                    setState('')
-                    setDistrict('')
-                }
+                getpincode(e.target.value)
             }
             else {
                 setState('')
                 setDistrict('')
             }
         }
-        setTimeout(() => {
-            if (name.length > 3 && email.length > 3 && address.length > 3 && phone.length > 3 && pincode.length > 3) {
-                setDisabled(false)
-            }
-            else {
-                setDisabled(true)
-            }
-        }, 100);
     }
 
     return (
         <>
+            <Head>
+                <title>{'Checkout -- Clox'}</title>
+                <meta name="description" content={'Checkout'} />
+            </Head>
             <ToastContainer
                 position="top-left"
                 autoClose={3000}
@@ -134,7 +167,7 @@ const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }
                     <div className="px-2 w-1/2">
                         <div className="mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                            {user.value ? <input value={user.email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true} /> : <input onChange={handleChange} value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />}
+                            {user ? <input value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true} /> : <input onChange={handleChange} value={email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />}
                         </div>
                     </div>
                 </div>
@@ -198,4 +231,5 @@ const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal, user }
             </div></>
     )
 }
+
 export default Checkout

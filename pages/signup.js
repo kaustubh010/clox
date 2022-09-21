@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
 
 const Signup = () => {
     const [name, setName] = useState('')
@@ -69,6 +70,10 @@ const Signup = () => {
 
     return (
         <>
+        <Head>
+            <title>{'Sign up -- Clox'}</title>
+            <meta name="description" content={'Sign up'} />
+        </Head>
             <ToastContainer
                 position="top-left"
                 autoClose={3000}

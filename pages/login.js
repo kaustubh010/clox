@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
+import Head from 'next/head';
 
 const Login = () => {
     const router = useRouter()
@@ -69,6 +70,10 @@ const Login = () => {
 
     return (
         <>
+        <Head>
+            <title>{'Login -- Clox'}</title>
+            <meta name="description" content={'login'} />
+        </Head>
         <ToastContainer
             position="top-left"
             autoClose={3000}
@@ -106,10 +111,6 @@ const Login = () => {
                             <div className="flex items-center">
                                 <input onChange={handleChange} id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded" />
                                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900"> Remember me </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <Link href={'/forgot'}><a className="font-medium text-red-600 hover:text-red-500"> Forgot your password?</a></Link>
                             </div>
                         </div>
 

@@ -9,7 +9,7 @@ const Shop = ({ products }) => {
     return (
         <>
         <Head>
-        <title>Clox.com Shop</title>
+        <title>Clox Shop</title>
         <meta name="description" content="We sell Natural cleaning Products for your home and Office to keep your home clean and hygienic. Because your safety is our responsibility." />
         </Head><div>
                 <section className="text-gray-600 body-font mt-6 m-auto">
