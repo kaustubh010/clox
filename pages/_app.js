@@ -5,6 +5,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Head from 'next/head'
 import '../styles/globals.css'
 import { useState, useEffect } from 'react'
+import ProfileDD from '../src/layouts/header/ProfileDD'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()

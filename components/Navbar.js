@@ -6,17 +6,19 @@ import { FaUserCircle, FaShoppingCart } from 'react-icons/fa'
 import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart, AiFillMinusCircle, AiFillPlusCircle, AiFillBook } from 'react-icons/ai'
 import { FiLogOut } from 'react-icons/fi'
 import { useRouter } from 'next/router'
+import ProfileDD from '../src/layouts/header/ProfileDD'
+import {Button} from "@mui/material";
 
 const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subTotal }) => {
     const router = useRouter()
     useEffect(() => {
         Object.keys(cart).length !== 0 && setSidebar(true)
         let excluded = ['/checkout', '/order', '/orders', '/account', '/login', '/signup', '/forgot', '/shop']
-        if(excluded.includes(router.pathname)){
+        if (excluded.includes(router.pathname)) {
             setSidebar(false)
         }
     }, [])
-    
+
     const ref = useRef()
     const [sidebar, setSidebar] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -48,19 +50,11 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/contact'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">Contact Us</a></Link></li>
                         <li className='flex h-20 items-center relative text-lg lg:text-xl'><Link href={'/shop'}><a className="hover:text-red-500 mr-5 flex h-20 items-center relative text-lg lg:text-xl">Shop</a></Link></li>
                     </nav>
-                    {dropdown && <div className="absolute right-28 w-50 text-md flex bg-white top-16 rounded-md px-5 shadow-slate-600 shadow-md">
-                        <ul className='hidden md:block'>
-                            <Link href={'/account'}><li className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><FaUserCircle className='m-4 text-2xl text-red-500' />My Account</li></Link>
-                            <Link href={'/orders'}><li className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><AiFillBook className='m-4 text-2xl text-red-500' />Orders</li></Link>
-                            <hr />
-                            <li onClick={logout} className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><FiLogOut className='m-4 text-2xl' />Log out</li>
-                        </ul>
-                    </div>}
-                    {user.value && <FaUserCircle onClick={toogleDropdown} className='hidden md:block text-xl md:text-2xl mx-2 text-red-500 cursor-pointer' />}
+                    {user.value && <span className='hidden md:block'><ProfileDD logout={logout} /></span>}
                     {!user.value && <Link href={'/login'}><button className="hidden md:block bg-red-500 px-2 py-1 pb-1.5 rounded-md text-sm text-white mx-3 cursor-pointer">Login</button></Link>}
                     <button onClick={toggleCart} className="hidden md:block px-2 py-1 pb-1.5 text-red-500 text-2xl bg-white border-slate-100 rounded-2xl border-2 mx-3 cursor-pointer"><AiOutlineShoppingCart /></button>
                 </div>
-                <div ref={ref} className={`sideCart z-10 top-0 p-10 transition-all ${sidebar ?'right-0': '-right-full'} bg-white w-full md:w-[50%] h-full fixed`}>
+                <div ref={ref} className={`sideCart z-10 top-0 p-10 transition-all ${sidebar ? 'right-0' : '-right-full'} bg-white w-full md:w-[50%] h-full fixed`}>
                     <div className="w-full flex justify-between items-center relative ps-5 md:ps-7 py-0.5 border-b border-gray-100">
                         <h2 className='font-bold text-xl md:text-2xl m-0 text-heading'>Shoping Cart</h2>
                         <button onClick={toggleCart} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
@@ -91,14 +85,6 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                 </div>
             </header>
             <div className="lg:hidden z-10">
-                {dropdown && <div className="z-50 w-[100vh] h-[vh] text-md flex bg-white bottom-0 fixed rounded-md px-5 shadow-slate-600 shadow-md">
-                    <ul>
-                        <Link href={'/account'}><li className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><FaUserCircle className='m-4 text-2xl text-red-500' />My Account</li></Link>
-                        <Link href={'/orders'}><li className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><AiFillBook className='m-4 text-2xl text-red-500' />Orders</li></Link>
-                        <hr />
-                        <li onClick={logout} className='hover:bg-slate-100 cursor-pointer items-center flex text-md font-semibold'><FiLogOut className='m-4 text-2xl' />Log out</li>
-                    </ul>
-                </div>}
                 <div className="bg-white md:hidden fixed bottom-0 w-full">
                     <hr />
                     <ul className="h-14 flex px-6 items-center justify-between">
@@ -106,7 +92,7 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                         <Link href={'/'}><li className='text-2xl'><AiFillHome /></li></Link>
                         <li onClick={toggleCart} className='text-2xl'><AiOutlineShoppingCart /></li>
                         {!user.value && <Link href={'/login'}><li className='text-2xl'><FaUserCircle /></li></Link>}
-                        {user.value && <li onClick={toogleDropdown} className='text-2xl'><FaUserCircle /></li>}
+                        {user.value && <ProfileDD logout={logout} />}
                     </ul>
                 </div>
                 <div ref={navref} className="Nav z-10 top-0 left-0 p-10 transform transition-transform -translate-x-full bg-white w-full h-full fixed">
@@ -115,30 +101,10 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                         <button onClick={toggleNav} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
                     </div>
                     <nav className="mt-10 MuiList-root MuiList-padding MuiList-subheader css-5xiesr" aria-labelledby="nested-list-subheader">
-                        <div className="p-4 w-[60%] hover:bg-slate-100 MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root mb-4 css-1uwabd6" tabIndex="0"
-                            role="button">
-                            <div className="MuiListItemText-root css-1tsvksn"><Link href={'/'}><span onClick={toggleNav}
-                                className="left-0 text-xl MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Home</span></Link>
-                            </div><span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </div>
-                        <div className="p-4 w-[60%] hover:bg-slate-100 MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root mb-4 css-1uwabd6" tabIndex="0"
-                            role="button">
-                            <div className="MuiListItemText-root css-1tsvksn"><Link href={'/about'}><span onClick={toggleNav}
-                                className="left-0 text-xl MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">About</span></Link></div>
-                            <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </div>
-                        <div className="p-4 w-[60%] hover:bg-slate-100 MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root mb-4 css-1uwabd6" tabIndex="0"
-                            role="button">
-                            <div className="MuiListItemText-root css-1tsvksn"><Link href={'/shop'}><span onClick={toggleNav}
-                                className="left-0 text-xl MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Shop</span></Link>
-                            </div><span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </div>
-                        <div className="p-4 w-[60%] hover:bg-slate-100 MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root mb-4 css-1uwabd6" tabIndex="0"
-                            role="button">
-                            <div className="MuiListItemText-root css-1tsvksn"><Link href={'/contact'}><span onClick={toggleNav}
-                                className="left-0 text-xl MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Contact Us</span></Link>
-                            </div><span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </div>
+                        <Link href={'/'}><Button className='text-xl mb-4 text-black w-full'><span>Home</span></Button></Link>
+                        <Link href={'/about'}><Button className='text-xl mb-4 text-black w-full'><span>About</span></Button></Link>
+                        <Link href={'/shop'}><Button className='text-xl mb-4 text-black w-full'><span>Shop</span></Button></Link>
+                        <Link href={'/contact'}><Button className='text-xl mb-4 text-black w-full'><span>Contact</span></Button></Link>
                     </nav>
                 </div>
             </div>

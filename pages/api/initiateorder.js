@@ -2,6 +2,9 @@
 import Order from "../../models/Order"
 import Product from "../../models/Product"
 import connectDb from "../../middleware/mongoose"
+import ReactDOMServer from "react-dom/server";
+import NotFound from "../error";
+import Head from "next/head";
 
 const handler = async (req, res) => {
   if (req.method === 'POST') {
@@ -67,8 +70,10 @@ const handler = async (req, res) => {
     })
     await b.json()
   }
-  else{
-    res.status(400).json({ error: 'This method is not allowed' })
+  else {
+    return res
+      .status(404)
+      .send(ReactDOMServer.renderToStaticMarkup(<NotFound />));
   }
 }
 

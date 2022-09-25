@@ -3,6 +3,8 @@ import User from "../../models/User"
 import connectDb from "../../middleware/mongoose"
 var CryptoJS = require("crypto-js");
 var jwt = require('jsonwebtoken');
+import ReactDOMServer from "react-dom/server";
+import NotFound from "../error";
 
 const handler = async (req, res) => {
     if (req.method == 'POST') {
@@ -25,7 +27,9 @@ const handler = async (req, res) => {
         
     }
     else {
-        res.status(400).json({ error: "This method is not allowed" })
+        return res
+            .status(404)
+            .send(ReactDOMServer.renderToStaticMarkup(<NotFound />));
     }
 }
 export default connectDb(handler);

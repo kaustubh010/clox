@@ -2,6 +2,8 @@
 import User from "../../models/User"
 import connectDb from "../../middleware/mongoose"
 import jsonwebtoken from 'jsonwebtoken'
+import ReactDOMServer from "react-dom/server";
+import NotFound from "../error";
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
@@ -12,7 +14,9 @@ const handler = async (req, res) => {
         res.status(200).json({ name, email, address, pincode, phone })
     }
     else {
-        res.status(400).json({ error: "error" })
+        return res
+            .status(404)
+            .send(ReactDOMServer.renderToStaticMarkup(<NotFound />));
     }
 }
 export default connectDb(handler);
