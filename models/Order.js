@@ -7,7 +7,7 @@ const OrderSchema = new mongoose.Schema({
     paymentInfo: {type: String, default: 'COD'},
     products: {type: Object, required: true},
     address: {type: String, required: true},
-    city: {type: String, required: true},
+    district: {type: String, required: true},
     state: {type: String, required: true},
     pincode: {type: String, required: true},
     phone: {type: String, required: true},

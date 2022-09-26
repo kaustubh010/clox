@@ -6,17 +6,15 @@ import NotFound from "../error";
 
 const handler = async (req, res) => {
     if (req.method == 'POST') {
-        for (let i = 0; i < req.body.length; i++) {
-            let P = new Product({
-                title: req.body[i].title,
-                slug: req.body[i].slug,
-                desc: req.body[i].desc,
-                img: req.body[i].img,
-                price: req.body[i].price,
-                availableQty: req.body[i].availableQty,
-            })
-            await P.save()
-        }
+        let P = new Product({
+            title: req.body.title,
+            slug: req.body.slug,
+            desc: req.body.desc,
+            img: req.body.img,
+            price: req.body.price,
+            availableQty: req.body.availableQty,
+        })
+        await P.save()
         res.status(200).json({ succses: "succses" })
     }
     else {

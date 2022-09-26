@@ -56,7 +56,7 @@ const Checkout = ({ cart, clearCart, removeFromCart, addToCart, subTotal }) => {
     const router = useRouter()
     const initiateOrder = async () => {
         let oid = Math.floor(Math.random() * Date.now());
-        const data = { cart, subTotal, oid, email: email, name, address, pincode, phone }
+        const data = { cart, subTotal, oid, email: email, name, address, pincode, phone, state, district }
         // Initiate order api
         let a = await fetch('/api/initiateorder', {
             method: 'POST',

@@ -49,7 +49,7 @@ const handler = async (req, res) => {
       name: req.body.name,
       orderId: req.body.oid,
       address: req.body.address,
-      city: req.body.city,
+      district: req.body.district,
       state: req.body.state,
       pincode: req.body.pincode,
       phone: req.body.phone,
