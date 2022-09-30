@@ -4,6 +4,7 @@ import theme from "../../src/theme/theme";
 import FullLayout from "../../src/layouts/FullLayout";
 import { Grid, ImageList, ImageListItem } from "@mui/material";
 import BaseCard from "../../src/components/baseCard/BaseCard";
+import Head from 'next/head';
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -91,11 +92,15 @@ const itemData = [
 
 const Imageuploder = () => {
   return (
+    <><Head><title>{'Admin -- Upload An Image'}</title></Head>
     <ThemeProvider theme={theme}>
       <style jsx global>{`
             footer {
             display: none;
             }
+            header {
+              display: none;
+              }
       `}</style>
       <FullLayout>
         <Grid container spacing={0}>
@@ -126,6 +131,7 @@ const Imageuploder = () => {
         </Grid>
       </FullLayout>
     </ThemeProvider>
+    </>
   );
 }
 

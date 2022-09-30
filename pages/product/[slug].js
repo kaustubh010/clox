@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Head from 'next/head';
 import Error from 'next/error'
 
-const Post = ({ addToCart, product, buynow, error}) => {
+const Post = ({ addToCart, product, buynow, error }) => {
     const router = useRouter()
     const { slug } = router.query
     const [pin, setPin] = useState()
@@ -61,7 +61,7 @@ const Post = ({ addToCart, product, buynow, error}) => {
     }
     if (error == 404) {
         return <Error statusCode={404} />
-      }
+    }
 
     return <>
         <Head>
@@ -80,9 +80,10 @@ const Post = ({ addToCart, product, buynow, error}) => {
             pauseOnHover
         />
         <section className="text-gray-600 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto flex items-center">
-                <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center items-center">
-                    <img alt="ecommerce" width={160} height={400} src={product.img} />
+            <div className="container px-5 py-28 mx-auto flex items-center">
+                <div className="lg:w-[80%] flex flex-col lg:flex-row mx-auto">
+                    <div className="flex flex-col mx-auto"><div className="h-auto px-2 md:w-full mx-4 flex lg:flex-col"></div></div>
+                    <img alt="ecommerce" className='lg:w-[45%] w-full lg:h-auto object-cover object-top rounded-lg' src={product.img} />
                     <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">Clox</h2>
                         <h1 className="mb-4 text-gray-900 text-3xl title-font font-medium">{product.title}</h1>
@@ -116,13 +117,13 @@ export async function getServerSideProps(context) {
         await mongoose.connect(process.env.MONGODB_URI)
     }
     let product = await Product.findOne({ slug: context.query.slug })
-    if(product == null){
+    if (product == null) {
         return {
-            props: {error: 404 } // will be passed to the page component as props
+            props: { error: 404 } // will be passed to the page component as props
         }
     }
     return {
-        props: {error: error, product: JSON.parse(JSON.stringify(product)) } // will be passed to the page component as props
+        props: { error: error, product: JSON.parse(JSON.stringify(product)) } // will be passed to the page component as props
     }
 }
 

@@ -28,61 +28,61 @@ export default function Home({ products }) {
               <div className="w-20 h-full bg-red-500"></div>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center items-center space-x-0 md:space-x-20 sm:-m-4 -mx-4 -mb-10 -mt-4">
+          <div className="flex flex-wrap -m-4">
             {products.length == 0 && <div className='container flex justify-center items-center'><p className='text-center text-xl text-red-500'>Sorry! Nothing to show</p></div>}
-            {products.length == 1 && <div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-              <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
+            {products.length == 1 && <div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                <Link href={`/product/${products[0].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[0].img} /></Link>
+                <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[0].title}</h2>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].title}</h2>
             </div>}
-            {products.length == 2 && <><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-              <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
+            {products.length == 2 && <><div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                <Link href={`/product/${products[0].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[0].img} /></Link>
+                <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[0].title}</h2>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].title}</h2>
-            </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[1].img} /></Link>
+            </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[1].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[1].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[1].title}</h2>
               </div></>}
-            {products.length == 3 && <><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-              <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
+            {products.length == 3 && <><div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                <Link href={`/product/${products[0].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[0].img} /></Link>
+                <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[0].title}</h2>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].title}</h2>
-            </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[1].img} /></Link>
+            </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[1].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[1].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[1].title}</h2>
-              </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[2].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[2].img} /></Link>
+              </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[2].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[2].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[2].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[2].title}</h2>
               </div></>}
-            {products.length >= 4 && <><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-              <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                <Link href={`/product/${products[0].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[0].img} /></Link>
+            {products.length >= 4 && <><div className="xl:w-1/4 md:w-1/2 p-4">
+              <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                <Link href={`/product/${products[0].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[0].img} /></Link>
+                <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[0].title}</h2>
               </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[0].title}</h2>
-            </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[1].img} /></Link>
+            </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[1].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[1].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[1].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[1].title}</h2>
-              </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[2].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[2].img} /></Link>
+              </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[2].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[2].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[2].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[2].title}</h2>
-              </div><div className="p-4 md:w-60 sm:mb-0 flex flex-col pt-4 rounded-lg justify-center items-center mb-6 bg-slate-100">
-                <div className="h-96 w-40 bg-slate-200 overflow-hidden">
-                  <Link href={`/product/${products[3].slug}`}><img alt="content" className="cursor-pointer object-cover object-center h-96 w-40" src={products[3].img} /></Link>
+              </div><div className="xl:w-1/4 md:w-1/2 p-4">
+                <div className="bg-gray-100 cursor-pointer p-6 rounded-lg">
+                  <Link href={`/product/${products[3].slug}`}><img alt="content" className="rounded w-full object-cover object-top mb-6" src={products[3].img} /></Link>
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{products[3].title}</h2>
                 </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{products[3].title}</h2>
               </div></>}
           </div>
         </div>

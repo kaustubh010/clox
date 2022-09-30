@@ -6,32 +6,37 @@ import ProductPerfomance from "../../src/components/dashboard/ProductPerfomance"
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../src/theme/theme";
 import FullLayout from "../../src/layouts/FullLayout";
+import Head from "next/head";
 
 export default function Index() {
     return (
-        <ThemeProvider theme={theme}>
-            <style jsx global>{`
+        <><Head><title>{'Clox -- Admin Panel'}</title></Head>
+            <ThemeProvider theme={theme}>
+                <style jsx global>{`
             footer {
             display: none;
             }
+            header {
+            display: none;
+            }
       `}</style>
-            <FullLayout>
-                <Grid container spacing={0}>
-                    <Grid item xs={12} lg={12}>
-                        <SalesOverview />
+                <FullLayout>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} lg={12}>
+                            <SalesOverview />
+                        </Grid>
+                        {/* ------------------------- row 1 ------------------------- */}
+                        <Grid item xs={12} lg={4}>
+                            <DailyActivity />
+                        </Grid>
+                        <Grid item xs={12} lg={8}>
+                            <ProductPerfomance />
+                        </Grid>
+                        <Grid item xs={12} lg={12}>
+                            <BlogCard />
+                        </Grid>
                     </Grid>
-                    {/* ------------------------- row 1 ------------------------- */}
-                    <Grid item xs={12} lg={4}>
-                        <DailyActivity />
-                    </Grid>
-                    <Grid item xs={12} lg={8}>
-                        <ProductPerfomance />
-                    </Grid>
-                    <Grid item xs={12} lg={12}>
-                        <BlogCard />
-                    </Grid>
-                </Grid>
-            </FullLayout>
-        </ThemeProvider>
+                </FullLayout>
+            </ThemeProvider></>
     );
 }

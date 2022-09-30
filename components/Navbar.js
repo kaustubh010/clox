@@ -7,7 +7,7 @@ import { AiOutlineClose, AiFillHome, AiOutlineShoppingCart, AiFillMinusCircle, A
 import { FiLogOut } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import ProfileDD from '../src/layouts/header/ProfileDD'
-import {Button} from "@mui/material";
+import {ListItemButton, Button} from "@mui/material";
 
 const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subTotal }) => {
     const router = useRouter()
@@ -101,10 +101,10 @@ const Navbar = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subT
                         <button onClick={toggleNav} className="text-2xl text-black py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"><AiOutlineClose /></button>
                     </div>
                     <nav className="mt-10 MuiList-root MuiList-padding MuiList-subheader css-5xiesr" aria-labelledby="nested-list-subheader">
-                        <Link href={'/'}><Button className='text-xl mb-4 text-black w-full'><span>Home</span></Button></Link>
-                        <Link href={'/about'}><Button className='text-xl mb-4 text-black w-full'><span>About</span></Button></Link>
-                        <Link href={'/shop'}><Button className='text-xl mb-4 text-black w-full'><span>Shop</span></Button></Link>
-                        <Link href={'/contact'}><Button className='text-xl mb-4 text-black w-full'><span>Contact</span></Button></Link>
+                        <Link href={'/'}><ListItemButton className='text-xl mb-4 text-black w-full'><span>Home</span></ListItemButton></Link>
+                        <Link href={'/about'}><ListItemButton className='text-xl mb-4 text-black w-full'><span>About</span></ListItemButton></Link>
+                        <Link href={'/shop'}><ListItemButton className='text-xl mb-4 text-black w-full'><span>Shop</span></ListItemButton></Link>
+                        <Link href={'/contact'}><ListItemButton className='text-xl mb-4 text-black w-full'><span>Contact</span></ListItemButton></Link>
                     </nav>
                 </div>
             </div>
