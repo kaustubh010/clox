@@ -1,58 +1,20 @@
 import React from "react";
 import {
   Typography,
+  Button,
   Box,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Chip,
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
+import Link from "next/link"
 
-const products = [
-  {
-    id: "1",
-    name: "Sunil Joshi",
-    post: "Web Designer",
-    pname: "Elite Admin",
-    priority: "Low",
-    pbg: "primary.main",
-    budget: "3.9",
-  },
-  {
-    id: "2",
-    name: "Andrew McDownland",
-    post: "Project Manager",
-    pname: "Real Homes WP Theme",
-    priority: "Medium",
-    pbg: "secondary.main",
-    budget: "24.5",
-  },
-  {
-    id: "3",
-    name: "Christopher Jamil",
-    post: "Project Manager",
-    pname: "MedicalPro WP Theme",
-    priority: "High",
-    pbg: "error.main",
-    budget: "12.8",
-  },
-  {
-    id: "4",
-    name: "Nirav Joshi",
-    post: "Frontend Engineer",
-    pname: "Hosting Press HTML",
-    priority: "Critical",
-    pbg: "success.main",
-    budget: "2.4",
-  },
-];
-
-const ProductPerfomance = () => {
+const AllOrders = ({ orders }) => {
   return (
-    <BaseCard title="Product Perfomance">
+    <BaseCard title="All Orders">
       <Table
         aria-label="simple table"
         sx={{
@@ -64,34 +26,29 @@ const ProductPerfomance = () => {
           <TableRow>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Id
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography color="textSecondary" variant="h6">
-                Assigned
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography color="textSecondary" variant="h6">
                 Name
               </Typography>
             </TableCell>
             <TableCell>
               <Typography color="textSecondary" variant="h6">
-                Priority
+                Phone
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography color="textSecondary" variant="h6">
+                Amount
               </Typography>
             </TableCell>
             <TableCell align="right">
               <Typography color="textSecondary" variant="h6">
-                Budget
+                Actions
               </Typography>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.name}>
+          {orders && orders.map((order) => (
+            <TableRow key={order._id}>
               <TableCell>
                 <Typography
                   sx={{
@@ -99,7 +56,7 @@ const ProductPerfomance = () => {
                     fontWeight: "500",
                   }}
                 >
-                  {product.id}
+                  {order.name}
                 </Typography>
               </TableCell>
               <TableCell>
@@ -116,7 +73,7 @@ const ProductPerfomance = () => {
                         fontWeight: "600",
                       }}
                     >
-                      {product.name}
+                      {order.phone}
                     </Typography>
                     <Typography
                       color="textSecondary"
@@ -124,30 +81,21 @@ const ProductPerfomance = () => {
                         fontSize: "13px",
                       }}
                     >
-                      {product.post}
                     </Typography>
                   </Box>
                 </Box>
               </TableCell>
               <TableCell>
                 <Typography color="textSecondary" variant="h6">
-                  {product.pname}
+                ₹{order.amount}
                 </Typography>
               </TableCell>
-              <TableCell>
-                <Chip
-                  sx={{
-                    pl: "4px",
-                    pr: "4px",
-                    backgroundColor: product.pbg,
-                    color: "#fff",
-                  }}
-                  size="small"
-                  label={product.priority}
-                ></Chip>
-              </TableCell>
               <TableCell align="right">
-                <Typography variant="h6">${product.budget}k</Typography>
+                <Typography variant="h6">
+                  <Link href={'/admin/view?id=' + order._id}><Button variant="outlined" color="error">
+                    Edit
+                  </Button></Link>
+                </Typography>
               </TableCell>
             </TableRow>
           ))}
@@ -157,4 +105,4 @@ const ProductPerfomance = () => {
   );
 };
 
-export default ProductPerfomance;
+export default AllOrders;

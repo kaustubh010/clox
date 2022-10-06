@@ -24,7 +24,7 @@ const MyOrder = (order) => {
               <h1 className="text-gray-900 text-xl md:text-3xl title-font font-medium mb-4">Order id: #{order.orderId}</h1>
               <p className="leading-relaxed mb-2 text-green-500">Yayy!! Your order has been Succesfully placed.</p>
               <p className="leading-relaxed mb-2">Order Placed on: <span className='font-semibold text-slate-500'>{date && date.toLocaleDateString("en-IN", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span></p>
-              <p>Your Payment Status is <span className='font-semibold text-red-700'>{order.status}.</span></p>
+              <p>Your Order Status is <span className='font-semibold text-red-700'>{order.status}.</span></p>
               <div className="flex mb-4 m-auto">
                 <a className="flex-grow py-2 text-lg px-1 m-auto">Item Description</a>
                 <a className="flex-grow py-2 text-lg px-1 m-auto">Quantity</a>

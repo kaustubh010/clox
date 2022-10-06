@@ -21,7 +21,7 @@ const Contact = () => {
                     </div>
                     <div className="box flex flex-col">
                         <span className='font-bold'>Customer Support</span>
-                        <span>Call/Whatsapp: +91 9929099100</span>
+                        <span>Call/Whatsapp: +91 9261336699</span>
                         <span>Email: care@clox.in</span>
                         <span>Morning: 9AM - 6PM</span>
                     </div>
